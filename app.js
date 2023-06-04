@@ -28,6 +28,8 @@ function getData(e) {
                     ui.showError("Kullanici Bulunamadi");
                 }
                 else {
+                    ui.addSearchedUserToUI(username);
+                    Storage.addSearchedUserToStorage(username);
                     ui.showUserInfo(response.user);
                     ui.showRepoInfo(response.repo);
                 }
@@ -48,4 +50,15 @@ function clearAllSearched() {
 
 function getAllSearched() {
     // Arananlari Storagedan al ve UIye ekle
+
+    let users = Storage.getSearchedUsersFromStorage();
+
+    let result = "";
+
+    users.forEach(user => {
+        // <li class="list-group-item">asdaskdjkasjkşdjşasjd</li>
+        result += `<li class="list-group-item">${user}</li>`;
+    });
+
+    lastUsers.innerHTML = result;
 }
