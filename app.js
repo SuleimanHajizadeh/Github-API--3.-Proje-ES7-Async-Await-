@@ -23,16 +23,15 @@ function getData(e) {
     }
     else {
         github.getGithubData(username)
-        .then(response => {
-            if(response.user.message === "Not Found") {
-                // Hata Mesaji
-                console.log("Hata");
-            }
-            else {
-                ui.showUserInfo(response.user);
-            }
-        })
-        .catch(err => console.log(err));
+            .then(response => {
+                if (response.user.message === "Not Found") {
+                    ui.showError("Kullanici Bulunamadi");
+                }
+                else {
+                    ui.showUserInfo(response.user);
+                }
+            })
+            .catch(err => ui.showError(err));
     }
 
 
